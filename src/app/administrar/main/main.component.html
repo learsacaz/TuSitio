@@ -1,0 +1,51 @@
+<div>
+    <div class="contenedor" *ngIf="logeo.getAuth()=='true' && logeo.getId()=='1'  && logeo.getVer()=='ver'" >
+        <div class="bandeja" >
+            <table *ngIf="mostrarEdit == false">
+                <tr>
+                    <th class="cabezera">Nombre</th>
+                    <th class="cabezera">Usuario</th>
+                    <th class="cabezera">correo</th>
+                    <th class="cabezera">Editar</th>
+                    <th class="cabezera">Eliminar</th>
+                </tr>
+                <tr *ngFor="let usuario of data; let i = index">
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.user }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td><button (click)="editar(usuario.id, usuario.nombre, usuario.user, usuario.correo)"><i class="fas fa-user-edit"></i></button></td>
+                    <td><button (click)="eliminar(usuario.id)"><i class="fas fa-trash-alt"></i></button></td>
+                </tr>
+            </table>
+            <table *ngIf="mostrarEdit == true">
+                <tr>
+                    <th class="cabezera">Nombre</th>
+                    <th class="cabezera">Usuario</th>
+                    <th class="cabezera">correo</th>
+                    <th class="cabezera">Editar</th>
+                </tr>
+                <tr>
+                    <td><input class="editar" type="text" value=""[(ngModel)]="nombre"></td>
+                    <td><input class="editar" type="text" value=""[(ngModel)]="user"></td>
+                    <td><input class="editar" type="text" value="" [(ngModel)]="correo" ></td>
+                    <td><button (click)="terminarEditar(nombre, user, correo)"><i class="fas fa-check"></i></button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="contenedor"  *ngIf="logeo.getAuth()=='cerrando'  && logeo.getVer()=='ver'">
+        <div class="inicieporfavor">
+            <h1>Cerrando Sesión, Vuelva Pronto</h1>
+        </div>
+    </div>
+    <div class="contenedor"  *ngIf="logeo.getAuth()=='true' && logeo.getId()!=='1'  && logeo.getVer()=='ver'">
+        <div class="inicieporfavor">
+            <h1>Acceso no autorizado, redireccionando...</h1>
+        </div>
+    </div>
+    <div class="contenedor"  *ngIf="logeo.getAuth()=='false'  && logeo.getVer()=='ver'">
+        <div class="inicieporfavor">
+            <h1>Por favor, inicie sesión</h1>
+        </div>
+    </div>
+</div>

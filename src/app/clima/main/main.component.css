@@ -1,0 +1,83 @@
+.contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li{
+    display: flex;
+    list-style: none;
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#8cccff",GradientType=1);
+    color: white;
+    border-radius: 10px;
+    margin: 5px 10px;
+    width: 130px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translateY(-10px);
+    transition: 1s ease;
+}
+ul{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.tiempos{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.tiempos>div{
+    display: flex;
+    flex-flow: column wrap;
+    margin: 10px;
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(140,204,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(140,204,255,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(140,204,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#8cccff",GradientType=1);
+    color: white;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(10px);
+    transition: 1s ease;
+    box-shadow: 0 1px 15px white ;
+}
+.tiempos>div:hover{
+    transform: translateY(-10px);
+}
+.animacion:hover{
+    transform: translateY(10px);
+}
+.temp, .feelslike, .ciudad, .humedad{
+    margin: 10px 0;
+}
+
+/*----------------------VISTA NO INICIADOS-------------------------------------*/
+.inicieporfavor{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#8cccff",GradientType=1);
+    padding: 20px;
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+}
+.inicieporfavor>h1{
+    text-align: center;
+}

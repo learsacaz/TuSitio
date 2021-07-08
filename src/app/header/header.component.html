@@ -1,0 +1,19 @@
+<div class="header">
+    <div *ngIf="loggedService.getAuth()=='false'  && loggedService.getVer()=='ver'" >
+        <ul class="nav">
+            <li><a href="/login">Iniciar sesión</a></li>
+            <li><a href="/register">Registrarse</a></li>
+        </ul>
+    </div>
+    <ul class="nav" *ngIf="loggedService.getAuth()=='true' && loggedService.getId()!=='1' && loggedService.getVer()=='ver'">
+        <li><a href="/clima">Clima</a></li>
+        <li><a href="/mensajes">Mensajes</a></li>
+        <li><a (click)="cerrarSesion()">Cerrar Sesión</a></li>
+    </ul>
+    <ul class="nav" *ngIf="loggedService.getAuth()=='true' && loggedService.getId()=='1' && loggedService.getUser()=='lsaumeth' && loggedService.getVer()=='ver'">
+        <li><a href="/clima">Clima</a></li>
+        <li><a href="/mensajes">Mensajes</a></li>
+        <li><a href="/administrar">Administrar</a></li>
+        <li><a (click)="cerrarSesion()">Cerrar Sesión</a></li>
+    </ul>
+</div>

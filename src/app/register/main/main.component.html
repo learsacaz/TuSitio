@@ -1,0 +1,17 @@
+<div class="contenedor" *ngIf="logeoService.getAuth()=='false' && logeoService.getVer()=='ver'">
+    <div >
+        <form [formGroup]="formLogin" (submit)="send()" class="login"> 
+            <h1>Registro</h1><br>
+            <input type="text" placeholder="Nombre Completo" id="name" formControlName="name"><br><br>
+            <input type="text" placeholder="Usuario" id="user" formControlName="user"><br><br>
+            <input type="email" placeholder="Correo" id="email" formControlName="email"><br><br>
+            <input type="password" placeholder="Contraseña" id="pass" formControlName="pass"><br><br>
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</div>
+<div class="contenedor" *ngIf="logeoService.getAuth()=='true'  && logeoService.getVer()=='ver'">
+    <div class="bienvenida"> 
+        <h1>Bienvenido {{logeoService.getNombre()}} </h1>
+    </div>
+</div>

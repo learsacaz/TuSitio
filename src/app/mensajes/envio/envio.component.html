@@ -1,0 +1,19 @@
+<div class="contenedor">
+    <div *ngIf="logeo.getAuth()=='true' && logeo.getVer()=='ver'">
+        <form [formGroup]="formMensaje" (submit)="send()" class="login"> 
+            <h1>Deja un mensaje</h1><br>
+            <input type="textarea" placeholder="Mensaje..." id="mensaje" formControlName="mensaje"><br><br>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+    <div class="contenedor"  *ngIf="logeo.getAuth()=='cerrando'  && logeo.getVer()=='ver'">
+        <div class="inicieporfavor">
+            <h1>Cerrando Sesión, Vuelva Pronto</h1>
+        </div>
+    </div>
+    <div class="contenedor"  *ngIf="logeo.getAuth()=='false'  && logeo.getVer()=='ver'">
+        <div class="inicieporfavor">
+            <h1>Por favor, inicie sesión</h1>
+        </div>
+    </div>
+</div>
