@@ -1,35 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Molle:ital@1&family=Montserrat:wght@500&family=Castoro&family=Open+Sans:wght@300&display=swap');
+
 .header{
-    color: white;
+    color: black;
     margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgb(54, 54, 54);
+    width: 100%;
+    height: 50px;
+    font-family: 'Ubuntu', sans-serif;
+}
+.headernav{
+    display: flex;
+    flex-flow:row;
+    width: 100%;
 }
 .nav{
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
-    background: rgb(0,0,0);
-    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
-    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,204,255,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#8cccff",GradientType=1);
+    width: 90%;
+    height: 50px;
+    background-color: rgb(226, 226, 226);
 }
 .nav>li{
     list-style: none;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .nav>li:hover{
-    background: rgba(96, 173, 224,0.5);
+    background: rgba(0,0,0,0.5);
     transition: 0.5s;
+}
+a:hover{
+    color: white;
 }
 a{
     text-decoration: none;
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
-    width: 200px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
-    margin: 0 10px;
 }
 .nav>li>p{
     text-decoration: none;

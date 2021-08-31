@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LogeoService } from 'src/app/servicio/logeo.service';
+import { GestionService } from 'src/app/servicios/gestion.service';
 
 @Component({
   selector: 'app-envio',
@@ -18,15 +18,14 @@ export class EnvioComponent implements OnInit {
   public formMensaje = new FormGroup({});
   readonly endpoint:string = 'http://localhost:80/APIopenweatherapp/registrar/ingresar-mensaje.php';
 
-  constructor(private formBuilder: FormBuilder,public logeo:LogeoService) {}
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder,public logeo:LogeoService, private consumo:GestionService){
     this.formMensaje = this.formBuilder.group({
       mensaje: ['',Validators.required],
       user_id: [this.logeo.getId()]
     });
-    
-    
+  }
+
+  ngOnInit(): void {
     if(this.logeo.getAuth()=='false'){
       setInterval(function(){
         location.href="http://localhost:4200/login";
@@ -37,14 +36,14 @@ export class EnvioComponent implements OnInit {
   send():any{
 
     if(this.formMensaje.valid){
-      fetch(this.endpoint,{
-        method: 'POST',
-        body: JSON.stringify(this.formMensaje.value)
-      }).then(res=>res.json());
+      
       console.log(this.formMensaje.value);
-      setInterval(function(){
-        location.href="http://localhost:4200/mensajes";
-      },1000);
+      this.consumo.postDatos('ingresar-mensaje.php',JSON.stringify(this.formMensaje.value)).subscribe(
+        (data)=>{
+        }
+      );
+      location.href="http://localhost:4200/mensajes";
+
     }else{
       alert("Por favor, ingrese los datos correctos");
     }

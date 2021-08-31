@@ -1,14 +1,16 @@
 <div>
-<div class="contenedor" *ngIf="logeo.getAuth()=='true'  && logeo.getVer()=='ver'" >
+<div class="contenedor" *ngIf="logeo.getAuth()=='true'  && logeo.getVer()=='nover'" >
     <div class="bandeja" >
-        <div class="mensaje" *ngFor="let message of data; let i = index">
+        <div class="mensaje" *ngFor="let message of data;">
             <h1>De: {{message.nombre}}</h1><br>
             <p>{{message.mensaje}}</p>
         </div>
     </div>
-    <ul class="btn-agregar">
-        <li><a href="/mensajes/enviarMensaje">Agregar Un Mensaje</a></li>
-    </ul>
+    <div class="btn-agregar">
+        <div class="btn-agregar-agg">
+            <a href="/mensajes/enviarMensaje"><i class="fas fa-plus"></i></a>
+        </div>
+    </div>
 </div>
 <div class="contenedor"  *ngIf="logeo.getAuth()=='cerrando'  && logeo.getVer()=='ver'">
     <div class="inicieporfavor">

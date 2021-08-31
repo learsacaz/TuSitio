@@ -1,5 +1,5 @@
 <div>
-    <div class="contenedor" *ngIf="logeo.getAuth()=='true' && logeo.getId()=='1'  && logeo.getVer()=='ver'" >
+    <div class="contenedor" *ngIf="logeo.getAuth()=='true' && logeo.getId()=='1'  && logeo.getVer()=='nover'" >
         <div class="bandeja" >
             <table *ngIf="mostrarEdit == false">
                 <tr>
@@ -36,11 +36,6 @@
     <div class="contenedor"  *ngIf="logeo.getAuth()=='cerrando'  && logeo.getVer()=='ver'">
         <div class="inicieporfavor">
             <h1>Cerrando Sesión, Vuelva Pronto</h1>
-        </div>
-    </div>
-    <div class="contenedor"  *ngIf="logeo.getAuth()=='true' && logeo.getId()!=='1'  && logeo.getVer()=='ver'">
-        <div class="inicieporfavor">
-            <h1>Acceso no autorizado, redireccionando...</h1>
         </div>
     </div>
     <div class="contenedor"  *ngIf="logeo.getAuth()=='false'  && logeo.getVer()=='ver'">

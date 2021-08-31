@@ -1,5 +1,5 @@
 <div class="contenedor">
-    <div *ngIf="logeo.getAuth()=='true' && logeo.getVer()=='ver'">
+    <div *ngIf="logeo.getAuth()=='true' && logeo.getVer()=='nover'">
         <form [formGroup]="formMensaje" (submit)="send()" class="login"> 
             <h1>Deja un mensaje</h1><br>
             <input type="textarea" placeholder="Mensaje..." id="mensaje" formControlName="mensaje"><br><br>
@@ -9,7 +9,7 @@
     <div class="contenedor"  *ngIf="logeo.getAuth()=='cerrando'  && logeo.getVer()=='ver'">
         <div class="inicieporfavor">
             <h1>Cerrando Sesión, Vuelva Pronto</h1>
-        </div>
+          </div>
     </div>
     <div class="contenedor"  *ngIf="logeo.getAuth()=='false'  && logeo.getVer()=='ver'">
         <div class="inicieporfavor">

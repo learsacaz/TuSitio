@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogeoService } from 'src/app/servicio/logeo.service';
+import { GestionService } from 'src/app/servicios/gestion.service';
 
 @Component({
   selector: 'app-main',
@@ -10,22 +11,27 @@ import { LogeoService } from 'src/app/servicio/logeo.service';
 export class MainComponent implements OnInit {
 
   public formLogin = new FormGroup({});
-  readonly endpoint:string = 'http://localhost:80/APIopenweatherapp/registrar/ingresar-user.php';
-  readonly endpointIniciar:string = 'http://localhost:80/APIopenweatherapp/registrar/iniciar-sesion.php';
+  datos:any=null;
+  //';
+  readonly endpointIniciar:string = 'http://localhost:80/APIopenweatherapp/registrar/';
 
-  constructor(private formBuilder: FormBuilder,public logeoService: LogeoService) {}
+  constructor(private formBuilder: FormBuilder,public logeoService: LogeoService, private consumo: GestionService) {}
 
   ngOnInit(): void {
     this.formLogin = this.formBuilder.group({
       user: ['',Validators.required],
       pass: ['',Validators.required]
     });
-    this.logeoService.setVer('ver');
+    if(this.logeoService.getVer()=='nover'){
+      this.logeoService.setVer('nover');
+    }else{
+      this.logeoService.setVer('ver');
+    }
     if(this.logeoService.getAuth()=='cerrando'){
       this.logeoService.setAuth('false');      
     }else if(this.logeoService.getAuth()=='true'){
       setInterval(function(){
-        location.href="http://localhost:4200/clima";
+        location.href="http://localhost:4200/mensajes";
       },2000);
     }
   }
@@ -33,28 +39,35 @@ export class MainComponent implements OnInit {
   send():any{
 
     if(this.formLogin.valid){
-      fetch(this.endpoint,{
-        method: 'POST',
-        body: JSON.stringify(this.formLogin.value)
-      }).then(res=>res.json()).then(data => {
-        if(this.formLogin.value['user'] == data.listaUsuario[0]['user'] && this.formLogin.value['pass'] == data.listaUsuario[0]['pass']){
-          this.logeoService.setAuth('true');
+      this.consumo.postDatos('ingresar-user.php', JSON.stringify(this.formLogin.value)).subscribe(
           
-          this.logeoService.setNombre(data.listaUsuario[0].nombre);
-          this.logeoService.setId(data.listaUsuario[0].id);
-          this.logeoService.setUser(data.listaUsuario[0].user);
-          fetch(this.endpointIniciar,{
-            method: 'POST',
-            body: JSON.stringify(this.logeoService.getId())
-          });
-          setInterval(function(){
-            location.href="http://localhost:4200/clima";
-          },2000);  
+        (data) => {
+
+          this.datos = data;
+          console.log(this.datos);
+
+          if(this.datos==0){
+
+            alert("Usuario y/o contraseña equivocados");
+
+          }else if(this.formLogin.value['user'] == this.datos[0]['user'] && this.formLogin.value['pass'] == this.datos[0]['pass']){
+            this.logeoService.setAuth('true');
+            this.logeoService.setVer('nover');
+            this.logeoService.setNombre(this.datos[0]['nombre']);
+            this.logeoService.setId(this.datos[0]['id']);
+            this.logeoService.setUser(this.datos[0]['user']);
+            this.consumo.postDatos('iniciar-sesion.php', JSON.stringify(this.logeoService.getId()));
+            setInterval(function(){
+              location.href="http://localhost:4200/mensajes";
+            },2000);
+          }
+
         }
-      }).catch(err=>{
-        alert("Ingrese los datos correctamente");
-      });
+
+      );
+      
     }else{
+      alert("Por favor llenar todos los campos");
     }
   }
 

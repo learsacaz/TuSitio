@@ -1,4 +1,4 @@
-<div class="contenedor" *ngIf="logeoService.getAuth()=='false' && logeoService.getVer()=='ver'">
+<div class="contenedor" *ngIf="logeoService.getAuth()=='false' || logeoService.getVer()=='ver'">
     <div >
         <form [formGroup]="formLogin" (submit)="send()" class="login"> 
             <h1>Registro</h1><br>

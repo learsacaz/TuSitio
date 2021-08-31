@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MainComponent } from '../login/main/main.component';
 import { LogeoService } from '../servicio/logeo.service';
+import { GestionService } from '../servicios/gestion.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +9,16 @@ import { LogeoService } from '../servicio/logeo.service';
 })
 export class HeaderComponent implements OnInit {
 
-  readonly endpointsesion:string = 'http://localhost:80/APIopenweatherapp/registrar/terminar-sesion.php';
 
-  constructor(public loggedService: LogeoService) { 
+  constructor(public loggedService: LogeoService, private consumo:GestionService) { 
   }
 
   ngOnInit(): void {
   }
 
   cerrarSesion(){
-    fetch(this.endpointsesion,{
-      method: 'POST',
-      body: JSON.stringify(this.loggedService.getId())
-    });
+    this.consumo.postDatos('terminar-sesion.php',JSON.stringify(this.loggedService.getId())).subscribe((data)=>{});
+    this.loggedService.setVer('ver');
     this.loggedService.setAuth('cerrando');
     this.loggedService.setNombre('');
     this.loggedService.setUser('');

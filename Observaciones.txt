@@ -1,1 +1,0 @@
-Mover las todas carpetas al htdocs en xampp o a la carpeta raíz del servidor para la base de datos
